@@ -1,8 +1,18 @@
-.buttonList{
+
+.navbarPosition{
+    margin-left: 20px;    
+}
+
+.bg-primary{
     height: 97px;
     width: 1920px;
     background: linear-gradient(90deg, #8ECAE6 0%, #257CE6 100%);
     border-radius: 15px;
+    font-size: 30px;
+}
+
+.navbarText{
+    font-size: 35px; 
 }
 
 .backgroundColor{
@@ -18,19 +28,7 @@ img.logo{
     width: 45px;
     right: 40px;
     top: 24px;
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: black;
-    border: none;
-    font-size: 45px;
-    font-weight: bold;
-}
-
-.btn-secondary:hover {
-    background: none;
-    background-color: transparent;
+    user-select: none;
 }
 
 img.darker{
