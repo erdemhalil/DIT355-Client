@@ -14,9 +14,8 @@ export default function Home() {
     return (
         <>
   
-<div className ="backgroundColor">
 
-<Navbar bg="primary" variant="light">
+<Navbar bg="primary" variant="light" >
     <Container className= "navbarPosition">
     <Navbar.Brand className= "navbarText" href="/">Dentistmo</Navbar.Brand>
     <Nav className="me-auto">
@@ -31,10 +30,9 @@ export default function Home() {
     </Container>
   </Navbar>
         <div>
-            <h3>Calender and time table </h3>
+            <h3 class= "bookPagetitle">Calender and time table </h3>
         </div>
 
-</div>
         </>
     )
 }

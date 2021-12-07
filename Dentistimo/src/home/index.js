@@ -14,7 +14,6 @@ export default function Home() {
     return (
         <>
   
-<div className ="backgroundColor">
 
 <Navbar bg="primary" variant="light">
     <Container className= "navbarPosition">
@@ -40,7 +39,6 @@ export default function Home() {
           
         </div>
 
-</div>
         </>
     )
 }

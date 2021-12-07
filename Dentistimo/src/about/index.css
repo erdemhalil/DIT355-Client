@@ -1,0 +1,9 @@
+.aboutText{
+    position: relative;
+    top: 8em;
+    font-size: 21px;
+    word-break: keep-all;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-bottom: 1em; 
+}

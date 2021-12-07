@@ -14,9 +14,7 @@ export default function Profile() {
     return (
         <>
   
-<div className ="backgroundColor">
-
-  <Navbar bg="primary" variant="light">
+  <Navbar bg="primary" variant="light" >
     <Container className= "navbarPosition">
     <Navbar.Brand className= "navbarText" href="/">Dentistmo</Navbar.Brand>
     <Nav className="me-auto">
@@ -48,7 +46,6 @@ export default function Profile() {
             ladies window expect. Supply as so period it enough income he genius. Themselves acceptance bed sympathize get dissimilar way 
             admiration son. Design for are edward regret met lovers. This are calm case roof and.</p>   
     </div>
-</div>
         </>
     )
 }

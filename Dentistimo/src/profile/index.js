@@ -16,8 +16,6 @@ export default function Profile() {
     return (
         <>
   
-<div className ="backgroundColor">
-
 <Navbar bg="primary" variant="light">
     <Container className= "navbarPosition">
     <Navbar.Brand className= "navbarText" href="/">Dentistmo</Navbar.Brand>
@@ -36,7 +34,7 @@ export default function Profile() {
       <Image src="/assets/me.png" roundedCircle />
 
     <div class = "profileContent">
-        <h2>Appointments</h2>
+        <h2 id="profileTtle">Appointments:</h2>
         <div class="profileContainer">
             <p class = "containerTitles">Past:</p>
         </div>
@@ -45,7 +43,6 @@ export default function Profile() {
             <p class = "containerTitles">Future:</p>
         </div>
     </div>
-</div>
         </>
     )
 }
