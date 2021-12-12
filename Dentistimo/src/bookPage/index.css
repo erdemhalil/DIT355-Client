@@ -5,3 +5,8 @@
     padding-left: 2em;
     padding-right: 2em;
 }
+
+.datePicker{
+    position: relative;
+    top: 20em;
+}
