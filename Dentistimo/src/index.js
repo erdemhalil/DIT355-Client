@@ -7,15 +7,14 @@ import BookPage from './bookPage/index';
 import About from './about/index';
 
 
-
-  render(
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home/>} /> 
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/bookPage" element={<BookPage/>} />
-        <Route path="/about" element={<About/>} />
-      </Routes>
-    </BrowserRouter>,
-    document.getElementById("root")
-  );
+render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/bookPage" element={<BookPage />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
