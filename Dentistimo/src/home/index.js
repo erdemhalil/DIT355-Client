@@ -24,7 +24,25 @@ export default function Home() {
   var id = generateId(30)
   useEffect(() => {
     ws.addEventListener('open', () => {
-      ws.send(JSON.stringify({"id": id, "request": "get", "url": "/dentists/list/" ,"data": ""}));
+      let data = {
+        "name": "Your Dentist",
+        "owner": "Dan Tist",
+        "dentists": 3,
+        "address": "SpannmÃ¥lsgatan 20",
+        "city": "Gothenburg",
+        "coordinate": {
+          "longitude": 11.969388,
+          "latitude": 57.707619
+        },
+        "openinghours": {
+          "monday": "9:00-17:00",
+          "tuesday": "8:00-17:00",
+          "wednesday": "7:00-16:00",
+          "thursday": "9:00-17:00",
+          "friday": "9:00-15:00"
+        }
+      }
+      ws.send(JSON.stringify({"id": id, "request": "post", "url": "/dentists/create/" ,"data": JSON.stringify(data)}));
       console.log("connected to ws", ws)
     })
     ws.addEventListener('message', event => {
