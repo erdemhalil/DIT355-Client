@@ -24,7 +24,7 @@ export default function Home() {
   var id = generateId(30)
   useEffect(() => {
     ws.addEventListener('open', () => {
-      ws.send(JSON.stringify({"id": id, "request": "post", "message": "yes"}));
+      ws.send(JSON.stringify({"id": id, "request": "get", "url": "/dentists/list/" ,"data": ""}));
       console.log("connected to ws", ws)
     })
     ws.addEventListener('message', event => {
