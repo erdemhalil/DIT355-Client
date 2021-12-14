@@ -1,12 +1,24 @@
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+//import'./custom.scss';
 import Home from './home/index';
+import Profile from './profile/index';
+import BookPage from './bookPage/index';
+import About from './about/index';
+import LoginPage from './loginPage/index';
+import SignUpPage from './signUpPage/index';
+
 
 
   render(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} /> 
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/bookPage" element={<BookPage/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/loginPage" element={<LoginPage/>} />
+        <Route path="/signUpPage" element={<SignUpPage/>} />
       </Routes>
     </BrowserRouter>,
     document.getElementById("root")
