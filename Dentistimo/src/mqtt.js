@@ -3,20 +3,23 @@ function generateId(length) {
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let charactersLength = characters.length;
     for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
 }
 
-export default function mqtt( request, url, data){
+function mqtt(request, url, data) {
     const ws = new WebSocket("ws://localhost:8082");
-    ws.addEventListener('open', () => {
+    var message = []
+    ws.onopen = () => {
         let id = generateId(30)
-        ws.send(JSON.stringify({"id": id, "request": request, "url": url, "data": data}));
-        ws.addEventListener('message', event => {
-            let message = JSON.parse(event.data)
-            console.log('Message from server ', message)
-            return(JSON.stringify(message))
-        })
-    })
+        ws.send(JSON.stringify({ "id": id, "request": request, "url": url, "data": data }));
+    }
+    ws.onmessage = function (event) {
+        message.push(JSON.parse(event.data));
+        ws.close();
+    }
+    return message
 }
+
+export { mqtt as default }

@@ -30,10 +30,15 @@ export default function Home() {
         "friday": "9:00-15:00"
       }
     }
-    let a = mqtt("get", "/dentists/list/", "")
-    console.log(a)
+
+    let a = []
+    a = mqtt("get", "/dentists/list/", "")
+    setTimeout(() => {
+      console.log((a[0]).data)
+    }, 100);
+
   })
-  
+
   return (
     <>
       <NavBar />
