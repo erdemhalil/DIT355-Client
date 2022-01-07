@@ -24,7 +24,7 @@ export default function NavBar() {
     <Nav className="me-auto">
       <Nav.Link href="/">Home</Nav.Link>
       <Nav.Link href="/profile">Profile</Nav.Link>
-      <Nav.Link href="http://localhost:3001/">Locations</Nav.Link>
+      <Nav.Link href="http://localhost:3001/map/">Locations</Nav.Link>
       <Nav.Link href="/about">About</Nav.Link>
       <Nav.Link href="/loginPage">Login</Nav.Link>
   
@@ -45,7 +45,7 @@ export default function NavBar() {
   <Nav className="me-auto">
     <Nav.Link href="/">Home</Nav.Link>
     <Nav.Link href="/profile">Profile</Nav.Link>
-    <Nav.Link href="http://localhost:3001/">Locations</Nav.Link>
+    <Nav.Link href="http://localhost:3001/map/">Locations</Nav.Link>
     <Nav.Link href="/about">About</Nav.Link>
     <Nav.Link href="/loginPage" onClick={logout}>Logout</Nav.Link>
 
