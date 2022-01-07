@@ -31,12 +31,6 @@ export default function Home() {
       }
     }
 
-    let a = []
-    a = mqtt("get", "/dentists/list/", "")
-    setTimeout(() => {
-      console.log((a[0]).data)
-    }, 100);
-
   })
 
   return (
@@ -46,7 +40,7 @@ export default function Home() {
       <div>
         <img class="darker" src="/assets/Bryanstondentist_6.png" />
         <div className="homeText"> Your dentist, <br /> Hello there... </div>
-        <Link to="/bookPage"><Button variant="primary" class="homeButton" >Book NOW!</Button></Link>
+        <a href="http://localhost:3001/"><Button variant="primary" className="homeButton" >Book NOW!</Button></a>
       </div>
     </>
   )

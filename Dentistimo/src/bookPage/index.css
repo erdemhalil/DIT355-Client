@@ -10,3 +10,8 @@
     position: relative;
     top: 20em;
 }
+
+#padding-left {
+    position: relative;
+    left: 30px;
+}
