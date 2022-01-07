@@ -1,48 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import './index.css'
 import Image from 'react-bootstrap/Image'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
+import NavBar from '../sharedContent'
+import mqtt from '../mqtt'
+
 
 
 //import homepagePicture from './public/images/Bryanstondentist_6.png/';
 
 export default function Profile() {
+    const [bookings, setBookings] = useState()
+    const [loading, setLoading] = useState(true)
+    const [data, setData] = useState({"Authorization": localStorage.getItem("access_token")})
 
-    return (
-        <>
-  
-<Navbar bg="primary" variant="light">
-    <Container className= "navbarPosition">
-    <Navbar.Brand className= "navbarText" href="/">Dentistmo</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="/">Home</Nav.Link>
-      <Nav.Link href="/profile">Profile</Nav.Link>
-      <Nav.Link href="">Locations</Nav.Link>
-      <Nav.Link href="/about">About</Nav.Link>
+    useEffect(() => {
+        let result = mqtt("get", "/appointments/list/", data)
+        setTimeout(() => {
+            setBookings(result[0].data)
+            console.log(result)
+            setLoading(false)
+        }, 500); 
+    },[])
+    
+    console.log(bookings)
+    
+    if (loading) {
+        return <p>Data is loading...</p>;
+        }
 
-      <img class= "logo"src="/assets/logo.png"/>
-
-    </Nav>
-    </Container>
-  </Navbar>
-
-      <Image src="/assets/me.png" roundedCircle />
-
-    <div class = "profileContent">
-        <h2 id="profileTtle">Appointments:</h2>
-        <div class="profileContainer">
-            <p class = "containerTitles">Past:</p>
+        return (
+            <>
+        <NavBar/>
+    
+          <Image src="/assets/me.png" roundedCircle />
+    
+        <div class = "profileContent">
+            <h2 id="profileTtle">Appointments:</h2>
+                {
+                    bookings.map((booking) => {
+      
+                        return (
+                        <>
+                        <ul>       
+                            <li>{booking.dentist.name} {booking.date.slice(0,16).replace('T', " at ")}</li>
+                        </ul>
+                        </>
+                    )
+                })
+            }
         </div>
+            </>
+        )
+        
+    }
 
-        <div class="profileContainer">
-            <p class = "containerTitles">Future:</p>
-        </div>
-    </div>
-        </>
-    )
-}
+

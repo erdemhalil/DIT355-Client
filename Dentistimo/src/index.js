@@ -4,15 +4,22 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from './home/index';
 import Profile from './profile/index';
 import About from './about/index';
+import LoginPage from './loginPage/index';
+import SignUpPage from './signUpPage/index';
+import BookPage from './bookPage/index';
 
 
-render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/about" element={<About />} />
-    </Routes>
-  </BrowserRouter>,
-  document.getElementById("root")
-);
+
+  render(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>} /> 
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/bookPage/:id/" element={<BookPage/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/loginPage" element={<LoginPage/>} />
+        <Route path="/signUpPage" element={<SignUpPage/>} />
+      </Routes>
+    </BrowserRouter>,
+    document.getElementById("root")
+  );
