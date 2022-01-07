@@ -45,15 +45,52 @@ export default function BookPage(props) {
     },[])
     
     const sendBooking = () => {
-        let result = mqtt("post", "/appointments/", newBooking)
-        setTimeout(() => {
-          if (result[0].data.status === "201 Created") {
-            window.location.replace(`http://localhost:3000/profile/`);
-          }
-          console.log(result)
-        }, 500);
+        let book = newBooking
+        let day =  book.date.toLocaleDateString('en-US', { weekday: 'long' });
+        if (book.date.getDay() > 0 && book.date.getDay() <= 5){
+            let valid = true
+            console.log(day)  
+            let dentist = mqtt("get", `/dentists/detail/${id}/`, data)
+            setTimeout(() => {
+                String(dentist[0].data.openinghours.timestaken).split('.').forEach(days => {
+                    if(day.includes(days) && day.includes(String(book.date).split(' ')[4].split(':', 2).join(':'))){
+                        valid = false
+                        alert("The dentist is on break during that time. Please choose another time.")
+                    }
+                })
+                delete dentist[0].data.openinghours["timestaken"]
+                delete dentist[0].data.openinghours["id"]
+                for (var key in dentist[0].data.openinghours) {
+                    let start = parseInt(dentist[0].data.openinghours[key].split('-')[0].split(':')[0])
+                    let end = parseInt(dentist[0].data.openinghours[key].split('-')[1].split(':')[0])
+                    let chosenTime = parseInt(String(book.date).split(' ')[4].split(':', 1).join())
+                    if(day.toLowerCase() === key.toLowerCase() && (chosenTime < start || chosenTime > end)){
+                        valid = false
+                        return alert("Outside opening hours. Please choose another time.")
+                    }
+                }
+                if(valid){
+                    let result = mqtt("post", "/appointments/", newBooking)
+                    setTimeout(() => {
+                        try {
+                            if (result[0].data.status === "201 Created") {
+                                window.location.replace(`http://localhost:3000/profile/`);
+                                } else if (result[0].data.error === "401 Unauthorized"){
+                                    alert("Please log in first!")
+                                } else if (result[0].data.data.date[0] === "appointment with this date already exists."){
+                                    alert("That time is already taken. Please choose another time.")
+                                }
+                                console.log(result)   
+                        } catch (error) {
+                            alert(error)
+                        }
+                    }, 500);
+                }
+            }, 500);
+        } else {
+            alert("Please choose a working weekday.")
+        }
       }
-
     console.log(newBooking)
     
     if (loading) {

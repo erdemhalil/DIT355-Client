@@ -40,7 +40,7 @@ export default function Home() {
       <div>
         <img class="darker" src="/assets/Bryanstondentist_6.png" />
         <div className="homeText"> Your dentist, <br /> Hello there... </div>
-        <a href="http://localhost:3001/"><Button variant="primary" className="homeButton" >Book NOW!</Button></a>
+        <a href="http://localhost:3001/map/"><Button variant="primary" className="homeButton" >Book NOW!</Button></a>
       </div>
     </>
   )
