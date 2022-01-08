@@ -38,7 +38,7 @@ export default function BookPage(props) {
                 setTimesTaken(dentist[0].data.openinghours.timestaken.split("."))
             } catch (error) {
                 console.log(error)
-                alert("Something went wrong, please try again later!")
+                alert("The dentist selected does not exist.")
                 window.location.replace(`http://localhost:3000/`);
             }
         }, 500);
