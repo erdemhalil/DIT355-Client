@@ -68,6 +68,10 @@ export default function BookPage(props) {
                             return alert("Outside opening hours. Please choose another time.")
                         }
                     }
+                    if (newBooking.description === "" || newBooking.description === undefined){
+                        valid = false
+                        alert("Please describe your problem before booking a time.")
+                    }
                     if (valid) {
                         let newDate
                         newDate = new Date(newBooking.date.getTime() + (60 * 60 * 1000))
