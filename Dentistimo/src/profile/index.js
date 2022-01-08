@@ -17,7 +17,7 @@ export default function Profile() {
     const [data, setData] = useState({"Authorization": localStorage.getItem("access_token")})
 
     useEffect(() => {
-        let result = mqtt("get", "/appointments/list/", data)
+        let result = mqtt("get", "/appointments/list/user/", data)
         setTimeout(() => {
             setBookings(result[0].data)
             console.log(result)

@@ -24,7 +24,7 @@ import Stack from '@mui/material/Stack';
 
 export default function BookPage(props) {
     let { id } = useParams();
-
+    const [timesTaken, setTimesTaken] = useState([])
 
     const [bookings, setBookings] = useState([])
     const [newBooking, setNewBooking] = useState({
@@ -35,12 +35,14 @@ export default function BookPage(props) {
 
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState({"Authorization": localStorage.getItem("access_token")})
+    let dentist = mqtt("get", `/dentists/detail/${id}/`, data)
     useEffect(() => {
         let result = mqtt("get", `/appointments/detail/${id}/`, data)
         setTimeout(() => {
             setBookings(result[0].data)
             console.log(result)
             setLoading(false)
+            setTimesTaken(dentist[0].data.openinghours.timestaken.split("."))
         }, 500); 
     },[])
     
@@ -50,7 +52,6 @@ export default function BookPage(props) {
         if (book.date.getDay() > 0 && book.date.getDay() <= 5){
             let valid = true
             console.log(day)  
-            let dentist = mqtt("get", `/dentists/detail/${id}/`, data)
             setTimeout(() => {
                 String(dentist[0].data.openinghours.timestaken).split('.').forEach(days => {
                     if(day.includes(days) && day.includes(String(book.date).split(' ')[4].split(':', 2).join(':'))){
@@ -126,9 +127,10 @@ export default function BookPage(props) {
                 <Grid item xs={12}><Button onClick={sendBooking}>Book time</Button></Grid>
 
                 <Grid item xs={8} className="booked-times">
+                        
                     <h4>All booked times</h4>
                     <table>
-                    <tr>
+                    <tr>    
                         <th>Date</th>
                         <th>Description</th>
                     </tr>
@@ -148,6 +150,18 @@ export default function BookPage(props) {
                     </tr>
                     </table>
                 </Grid>
+                <Grid item xs={4} className="break-times">
+                    <h4>Break times</h4>
+                        { 
+                        timesTaken.map((times) => {
+                            return (
+                            <>
+                                <td>{times}</td>
+                            </>
+                        )
+                        })
+                         }
+                    </Grid>
                 </Grid> 
             </MuiPickersUtilsProvider>
         </div>

@@ -7,13 +7,10 @@
     background: #8ECAE6
 }
 
-#profileTtle{
-    position: relative;
-    right: 150px;
-}
 
 .profileContent{
     position: relative;
+    top: 50px;
     margin-left: 925px;
     bottom: 105px;
 }
