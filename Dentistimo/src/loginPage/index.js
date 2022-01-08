@@ -14,13 +14,18 @@ export default function Login() {
   const login = () => {
     let result = mqtt("post", "/users/token/", user)
     setTimeout(() => {
-      if (result[0].data.status === "200 OK") {
-        localStorage.setItem('access_token', result[0].data.data.access);
-        window.location.href = "/profile";
-      } else {
-        alert("Wrong credentials")
+      try {
+        if (result[0].data.status === "200 OK") {
+          localStorage.setItem('access_token', result[0].data.data.access);
+          window.location.href = "/profile";
+        } else {
+          alert("Wrong credentials")
+        }
+        console.log(result, user)
+      } catch (error) {
+        console.log(error)
+        alert("Something went wrong, please try again later.")
       }
-      console.log(result, user)
     }, 500);
   }
 

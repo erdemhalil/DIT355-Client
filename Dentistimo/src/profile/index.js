@@ -18,8 +18,14 @@ export default function Profile() {
     useEffect(() => {
         let result = mqtt("get", "/appointments/list/user/", data)
         setTimeout(() => {
-            setBookings(result[0].data)
-            setLoading(false)
+            try {
+                setBookings(result[0].data)
+                setLoading(false)
+            } catch (error) {
+                console.log(error)
+                alert("Something went wrong, please try again later.")
+                window.location.replace(`http://localhost:3000/`);
+            }
         }, 500);
     }, [])
 
