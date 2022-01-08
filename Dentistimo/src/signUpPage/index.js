@@ -13,8 +13,13 @@ export default function Login() {
   const signup = () => {
     let result = mqtt("post", "/users/register/", user)
     setTimeout(() => {
-      if (result[0].data.status === "201 Created") {
-        window.location.href = "/loginPage";
+      try {
+        if (result[0].data.status === "201 Created") {
+          window.location.href = "/loginPage";
+        }
+      } catch (error) {
+        console.log(error)
+        alert("Something went wrong, please try again later.")
       }
     }, 500);
   }
