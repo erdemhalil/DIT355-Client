@@ -24,3 +24,7 @@
 .break-times td {
     padding: 0px 20px;
 }
+
+.MuiGrid-spacing-xs-1{
+    width: 100% !important;
+}
