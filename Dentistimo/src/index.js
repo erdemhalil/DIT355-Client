@@ -7,8 +7,7 @@ import About from './about/index';
 import LoginPage from './loginPage/index';
 import SignUpPage from './signUpPage/index';
 import BookPage from './bookPage/index';
-
-
+import NotFound from './notFound/index';
 
   render(
     <BrowserRouter>
@@ -19,6 +18,7 @@ import BookPage from './bookPage/index';
         <Route path="/about" element={<About/>} />
         <Route path="/loginPage" element={<LoginPage/>} />
         <Route path="/signUpPage" element={<SignUpPage/>} />
+        <Route path="/*" element={<NotFound/>} />
       </Routes>
     </BrowserRouter>,
     document.getElementById("root")
