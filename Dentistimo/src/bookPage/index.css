@@ -1,9 +1,12 @@
 .bookPagetitle{
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    position: absolute; 
+    top: 200px;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 700px;
     text-align: center;
-    transform: translate(-50%, -330%);
     padding-left: 2em;
     padding-right: 2em;
 }
@@ -47,9 +50,12 @@
     font-weight: 500;
 }
 
-
 .booked-times {
     list-style-type: none;
     max-height: 150px;
     overflow-y: scroll;
 } 
+
+#book-button{
+    margin-bottom: 10px;
+}

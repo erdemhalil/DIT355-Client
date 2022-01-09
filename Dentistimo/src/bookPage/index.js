@@ -23,7 +23,7 @@ export default function BookPage(props) {
 
     const [newBooking, setNewBooking] = useState({
         "Authorization": localStorage.getItem("access_token"),
-        date: new Date('2021-01-01T12:00:00.000Z'),
+        date: new Date('2022-01-01T12:00:00.000Z'),
         dentist: id,
     })
     const [loading, setLoading] = useState(true)
@@ -74,8 +74,23 @@ export default function BookPage(props) {
                         alert("Please describe your problem before booking a time.")
                     }
                     if (valid) {
-                        let newDate
-                        newDate = new Date(newBooking.date.getTime() + (60 * 60 * 1000))
+                        let newDate 
+                        let currentDate = newBooking.date.getMinutes()
+                        if (currentDate ===  30 || currentDate ===  0) {
+                            newDate = new Date(newBooking.date.getTime() + (60 * 60 * 1000))
+                        }
+                        if (currentDate > 0 && currentDate < 15){
+                            newDate = new Date(newBooking.date.getTime() + ((60 - currentDate) * 60 * 1000))
+                        }
+                        if(currentDate >= 15 && currentDate < 30) {
+                            newDate = new Date(newBooking.date.getTime() + ((60 + (30 - currentDate)) * 60 * 1000))
+                        }
+                        if(currentDate > 30 && currentDate < 45){
+                            newDate = new Date(newBooking.date.getTime() + ((60 - (currentDate - 30)) * 60 * 1000))
+                        }
+                        if(currentDate >= 45 && currentDate <= 59){
+                            newDate = new Date(newBooking.date.getTime() + ((60 + (60 - currentDate)) * 60 * 1000))
+                        }
                         newBooking.date = newDate
                         let result = mqtt("post", "/appointments/", newBooking)
                         setTimeout(() => {
@@ -139,7 +154,7 @@ export default function BookPage(props) {
                             </LocalizationProvider>
                         </Grid>
                         <Grid item xs={12}><TextField id="filled-basic" label="Description" variant="outlined" onChange={(e) => { setNewBooking({ ...newBooking, description: e.target.value }) }} /></Grid>
-                        <Grid item xs={12}><Button onClick={sendBooking}>Book time</Button></Grid>
+                        <Grid item xs={12} id="book-button"><Button onClick={sendBooking}>Book time</Button></Grid>
                         <Grid item xs={8} className="booked-times">
                             <h4>All booked times</h4>
                             <table>

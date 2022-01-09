@@ -39,17 +39,19 @@ export default function Profile() {
             <Image src="/assets/me.png" roundedCircle />
             <div class="profileContent">
                 <h2 id="profileTtle">Appointments:</h2>
-                {
-                    bookings.map((booking) => {
-                        return (
-                            <>
-                                <ul>
-                                    <li>{booking.dentist.name} {booking.date.slice(0, 16).replace('T', " at ")}</li>
-                                </ul>
-                            </>
-                        )
-                    })
-                }
+                <div id='appointments'>
+                    {
+                        bookings.map((booking) => {
+                            return (
+                                <>
+                                    <ul>
+                                        <li>{booking.dentist.name} {booking.date.slice(0, 16).replace('T', " at ")}</li>
+                                    </ul>
+                                </>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </>
     )

@@ -7,7 +7,6 @@
     background: #8ECAE6
 }
 
-
 .profileContent{
     position: relative;
     top: 50px;
@@ -33,7 +32,7 @@
     margin-left: 30px;
 }
 
-.profileContent ul{
+#appointments{
     list-style-type: none;
     max-height: 400px;
     width: 200px;
