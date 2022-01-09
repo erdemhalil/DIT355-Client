@@ -18,14 +18,14 @@ import Stack from '@mui/material/Stack';
 export default function BookPage(props) {
     let { id } = useParams();
     const [timesTaken, setTimesTaken] = useState([])
-
     const [bookings, setBookings] = useState([])
+    const [dentistOpen, setDentistOpen] = useState()
+
     const [newBooking, setNewBooking] = useState({
         "Authorization": localStorage.getItem("access_token"),
         date: new Date('2021-01-01T12:00:00.000Z'),
         dentist: id,
     })
-
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState({ "Authorization": localStorage.getItem("access_token") })
     let dentist = mqtt("get", `/dentists/detail/${id}/`, data)
@@ -34,8 +34,9 @@ export default function BookPage(props) {
         setTimeout(() => {
             try {
                 setBookings(result[0].data)
-                setLoading(false)
                 setTimesTaken(dentist[0].data.openinghours.timestaken.split("."))
+                setDentistOpen(dentist[0].data.openinghours)
+                setLoading(false)
             } catch (error) {
                 console.log(error)
                 alert("The dentist selected does not exist.")
@@ -108,8 +109,17 @@ export default function BookPage(props) {
     return (
         <>
             <NavBar />
-            <div>
-                <h3 class="bookPagetitle">Calender and time table</h3>
+            <div class="bookPagetitle">
+                <h3>Calender and time table</h3>
+                <table>
+                <td>Monday: {dentistOpen.monday}</td>
+                <td>Tuesday: {dentistOpen.tuesday}</td>
+                <td>Wednesday: {dentistOpen.wednesday}</td>
+                <td>Thursday: {dentistOpen.thursday}</td>
+                <td>Friday: {dentistOpen.friday}</td>
+                <td>Saturday: Closed</td>
+                <td>Sunday: Closed</td>
+                </table>
             </div>
             <div class="datePicker">
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -168,6 +178,7 @@ export default function BookPage(props) {
                     </Grid>
                 </MuiPickersUtilsProvider>
             </div>
+                    <div className="booking-time-information">All booked times will be rounded up or down to either a half or full hour interval.</div>
         </>
     )
 }
