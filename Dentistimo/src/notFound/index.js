@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
 
 export default function notFound() {
+    //credit to https://codepen.io/saransh/pen/aezht
     return (
         <>
             <div id='body'>
