@@ -64,7 +64,7 @@ export default function BookPage(props) {
                         let start = parseInt(dentist[0].data.openinghours[key].split('-')[0].split(':')[0])
                         let end = parseInt(dentist[0].data.openinghours[key].split('-')[1].split(':')[0])
                         let chosenTime = parseInt(String(book.date).split(' ')[4].split(':', 1).join())
-                        if (day.toLowerCase() === key.toLowerCase() && (chosenTime < start || chosenTime > end)) {
+                        if (day.toLowerCase() === key.toLowerCase() && (chosenTime < start || chosenTime >= end)) {
                             valid = false
                             return alert("Outside opening hours. Please choose another time.")
                         }

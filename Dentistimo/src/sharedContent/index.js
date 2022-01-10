@@ -15,7 +15,7 @@ export default function NavBar() {
       <>
         <Navbar bg="primary" variant="light">
           <Container className="navbarPosition">
-            <Navbar.Brand className="navbarText" href="/">Dentistmo</Navbar.Brand>
+            <Navbar.Brand className="navbarText" href="/">Dentistimo</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
@@ -33,7 +33,7 @@ export default function NavBar() {
       <>
         <Navbar bg="primary" variant="light">
           <Container className="navbarPosition">
-            <Navbar.Brand className="navbarText" href="/">Dentistmo</Navbar.Brand>
+            <Navbar.Brand className="navbarText" href="/">Dentistimo</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="/profile">Profile</Nav.Link>
